@@ -12,8 +12,8 @@ Este proyecto demuestra operaciones CRUD básicas (Crear, Leer, Actualizar, Elim
 
 1. **Clona el repositorio** (si aún no lo has hecho):
    ```bash
-   git clone <tu-repositorio>
-   cd <directorio-del-proyecto>
+   git clone https://github.com/mframosg/sql-nosql-demo.git
+   cd sql-nosql-demo
    ```
 
 2. **Crea y activa un entorno virtual**:
