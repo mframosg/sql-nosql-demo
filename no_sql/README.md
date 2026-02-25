@@ -27,38 +27,124 @@ Este proyecto demuestra operaciones CRUD básicas (Crear, Leer, Actualizar, Elim
    pip install -r requirements.txt
    ```
 
+## Instalación de MongoDB
+
+Si aún no tienes MongoDB instalado, sigue las instrucciones según tu sistema operativo:
+
+### macOS
+
+```bash
+# Instalar MongoDB usando Homebrew
+brew tap mongodb/brew
+brew install mongodb-community
+```
+
+### Windows
+
+1. Descarga el instalador desde [MongoDB Community Download Center](https://www.mongodb.com/try/download/community)
+2. Ejecuta el instalador `.msi`
+3. Selecciona "Complete" installation
+4. Marca la opción "Install MongoDB as a Service"
+5. Deja las opciones por defecto y completa la instalación
+
+### Linux (Ubuntu/Debian)
+
+```bash
+# Importar la clave pública GPG de MongoDB
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+
+# Crear el archivo de lista de fuentes
+echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | \
+   sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+# Actualizar el índice de paquetes e instalar
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
+
+### Verificar la instalación
+
+Después de instalar, verifica que MongoDB esté correctamente instalado:
+
+```bash
+mongod --version
+```
+
 ## Gestión del Servicio MongoDB
 
-### Iniciar el servicio de MongoDB
+### macOS
 
+**Iniciar el servicio:**
 ```bash
 brew services start mongodb-community
 ```
 
-### Detener el servicio de MongoDB
-
+**Detener el servicio:**
 ```bash
 brew services stop mongodb-community
 ```
 
-### Reiniciar el servicio de MongoDB
-
+**Reiniciar el servicio:**
 ```bash
 brew services restart mongodb-community
 ```
 
-### Verificar el estado del servicio
-
+**Verificar el estado:**
 ```bash
 brew services list | grep mongo
 ```
 
-### Iniciar MongoDB manualmente (sin servicio)
-
-Si prefieres no usar el servicio, puedes iniciar MongoDB manualmente con:
-
+**Iniciar manualmente (sin servicio):**
 ```bash
 mongod --config /opt/homebrew/etc/mongod.conf --fork
+```
+
+### Windows
+
+Si instalaste MongoDB como servicio (opción por defecto), el servicio inicia automáticamente. Para controlarlo manualmente:
+
+**Iniciar el servicio:**
+```powershell
+net start MongoDB
+```
+
+**Detener el servicio:**
+```powershell
+net stop MongoDB
+```
+
+**Verificar el estado:**
+```powershell
+sc query MongoDB
+```
+
+### Linux
+
+**Iniciar el servicio:**
+```bash
+sudo systemctl start mongod
+```
+
+**Detener el servicio:**
+```bash
+sudo systemctl stop mongod
+```
+
+**Reiniciar el servicio:**
+```bash
+sudo systemctl restart mongod
+```
+
+**Verificar el estado:**
+```bash
+sudo systemctl status mongod
+```
+
+**Habilitar inicio automático:**
+```bash
+sudo systemctl enable mongod
 ```
 
 ## Ejecutar la Aplicación
